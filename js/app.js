@@ -28,7 +28,7 @@
     .csv("../data/landslides.csv")
     .on("ready", function (e) {
       drawMap(e.target.toGeoJSON());
-      //   drawLegend(e.target.toGeoJSON());
+      drawLegend(e.target.toGeoJSON());
     })
     .on("error", function (e) {
       console.log(e.error[0].message);
@@ -44,7 +44,7 @@
         });
       },
     };
-    // create 2 separate layers from GeoJSON data
+    // create landslide layer from GeoJSON data
     const landslides = L.geoJson(data, options).addTo(map);
 
     landslides.setStyle({
@@ -53,67 +53,71 @@
 
     console.log(landslides);
 
-     resizeCircles(landslides, 1);
-    // sequenceUI(girlsLayer, boysLayer);
-}
+    resizeCircles(landslides, 1);
+    sequenceUI(landslides);
+  }
 
   function calcRadius(val) {
     const radius = Math.sqrt(val / Math.PI);
-    return radius * 0.5; // adjust .5 as scale factor
+    return radius * 12; // adjust .5 as scale factor
   }
 
   // resize function for landslide circles
-  function resizeCircles(landslides, size_numeric) {
-      landslides.eachLayer(function (layer) {
-          const radius = 
-          calcRadius(layer.feature.properties[size_numeric]);
-          layer.setRadius(radius);
-      });
+  function resizeCircles(landslides, sizes) {
+    landslides.eachLayer(function (layer) {
+      var sizes = layer.feature.properties.size_numeric; 
+      console.log(sizes);
+      const radius = calcRadius(
+        Number(sizes)
+      );
+      layer.setRadius(radius);
+    });
   }
 
-  // function sequenceUI(landslides) {
-  //   //Leaflet control for slider
-  //   const sliderControl = L.control({
-  //     position: "bottomleft",
-  //   });
+  function sequenceUI(landslides) {
+    //Leaflet control for slider
+    const sliderControl = L.control({
+      position: "bottomleft",
+    });
 
-  //   sliderControl.onAdd = function (map) {
-  //     const controls = L.DomUtil.get("slider");
-  //     L.DomEvent.disableScrollPropagation(controls);
-  //     L.DomEvent.disableClickPropagation(controls);
+    sliderControl.onAdd = function (map) {
+      const controls = L.DomUtil.get("slider");
+      L.DomEvent.disableScrollPropagation(controls);
+      L.DomEvent.disableClickPropagation(controls);
 
-  //     return controls;
+      return controls;
+    };
+    // add slider to map
+    sliderControl.addTo(map);
+    
+    var sliderDescriber = L.control({
+      position:'bottomleft'
+    });
 
-  //   }
-  //   // add slider to map 
-  //   sliderControl.addTo(map);
+    //text added above slider describing year of landslide
+    sliderDescriber.onAdd = function (map) {
+      const year = L.DomUtil.get("slider-text");
+      L.DomEvent.disableScrollPropagation(year);
+      L.DomEvent.disableClickPropagation(year);
 
-  //   // text added above slider describing year of landslide
-  //   sliderDescriber.onAdd = function(map) {
-  //       const year = L.DomUtil.get('slider-text')
-  //       L.DomEvent.disableScrollPropagation(year);
-  //     L.DomEvent.disableClickPropagation(year);
+      return year;
+    };
+    sliderDescriber.addTo(map);
 
-  //     return year; 
-  //   }
-  //   sliderDescriber.addTo(map);
+    //select slider's input and listen for change
 
-  //   // select slider's input and listen for change
+    $("#slider input[type=range]").on("input", function () {
+      //current value of slider on year of occurence
 
-  //   // $('#slider input[type=range]')
-  //   // .on('input', function () {
+      var year = this.value;
+      console.log(`<b> Year: ${year} </b>`);
+      // add info for size of landslide
+      var sd = document.querySelector("#slider-text h2");
+      sd.innerHTML = `<b>Year: ${year}</b>`;
+      console.log(sd);
 
-  //   //     //current value of slider on year of occurence
-
-  //   //     var size_numeric = this.value; 
-  //   //     console.log(`<b> Size: ${size_numeric} </b>`)
-  //   //     // add info for size of landslide 
-  //   //     var sd = document.querySelector('#slider-text h2') 
-  //   //     sd.innerHTML = `<b>Size: ${size_numeric}</b>`
-  //   //     console.log(sd)
-
-  //   //     //resize circles with updated size level
-  //   //     resizeCircles(landslides, size_numeric)
-  //   // });
-  // }
+      //resize circles with updated size level
+      resizeCircles(landslides, size_numeric);
+    });
+  }
 })();
