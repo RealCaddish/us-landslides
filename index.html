@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Annual Worldwide Landslides</title>
+
+    <meta name='viewport' content='initial-scale=1, maximum-scale=1,user-scalable=no'/>
+    <link href="https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <!--link reference to external css -->
+
+  <link href='styles/styles.css' rel='stylesheet' />
+
+  <body>
+    <div class='flex-parent viewport-full relative scroll-hidden'>
+        <div class='flex-child w-full w300-ml absolute static-ml left bottom'>
+          <div class='flex-parent flex-parent--column viewport-third h-full-ml hmax-full bg-white py18 px12'>
+            <div class='flex-child filex-child--grow px12 py12 scroll-auto'>
+              <h1 class='txt-h1 mb3 align-center'>Annual Landslides Around the World </h1>
+              <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
+              <h2 class='txt-xl mt18 mb12 align-center'>Statistics on Landslide Impact</h2>
+              <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              </p>
+            </div>
+            <footer class='px12 py12 bg-gray-faint txt-s'>
+              <ul>
+                <li> Explore the raw
+                  <a class='link' href='../data/landslides.csv'>data</a>
+                </li>
+                <li>Map authored by
+                  <a class='link' href='https://realcaddish.github.io/'>Nathaniel Deaton</a>
+                </li>
+              </ul>
+            </footer>
+          </div>
+        </div>
+    
+        <div class='flex-child flex-child--grow viewport-twothirds vieewport-full-ml'>
+          <div id="map" class='viewport-twothirds viewport-full-ml'></div>
+    
+          <!--ui slider -->
+          <div id='slider' class='range w240 bg-white round-ml px12'>
+            <input type='range' min="1" , max="8" , value="1" , step="1" />
+          </div>
+    
+          <!--text above slider for grade level user has dragged to-->
+          <div id='slider-text' class='bg-gray-faint shadow-darken25 round relative'>
+            <h2 class='txt-bold mb12 w180'> Grade 1 </h2>
+            <div class="legend-large border border--gray-light absolute"></div>
+            <div class="legend-small border border--gray-light absolute"></div>
+          </div>
+    
+          <!-- legend -->
+          <div id='legend' class='bg-white round px12 py12 relative border'>
+            <h2 class='txt-bold mb12 w180'> Number of <boys>Boys</boys> and <girls>Girls</girls>
+              Enrolled in Classes from Grades 1 - 12</h2>
+            <div class='legend-circles relative w180'>
+              <div class="legend-large border border--gray-light absolute"></div>
+              <div class="legend-small border border--gray-light absolute"></div>
+              <div class="legend-large-label txt-m absolute"></div>
+              <div class="legend-small-label txt-m absolute"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+      <!-- ui info panel -->
+      <div id='info' class='py6 px12 bg-white border round
+    fixed w240'>
+        <p>County: <span></span></p>
+        <p class='girls'>girls <span></span>: <span class='txt-1 txt-bold'></span></p>
+        <p class='boys'>boys <span></span>: <span class='txt-1 txt-bold'></span></p>
+    
+        <!-- additional sparkline html-->
+        <hr class='txt-hr'>
+        <p class='my6'>trend: grades 1 &ndash; 8</p>
+        <p class='mb6'><span class='girlspark'></span></p>
+        <p><span class='boyspark'></span></p>
+      </div>
+      <script async defer src="https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.js"></script>
+    
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    
+      <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+    
+      <script src='js/app.js'></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+  </body>
+  
+</head>
+</html>

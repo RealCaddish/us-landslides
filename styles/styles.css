@@ -1,0 +1,68 @@
+a {
+    color: teal;
+    text-decoration: underline;
+  }
+  #map {
+    background: #448ee4;
+  }
+  
+  h1 {
+    color: orange;
+  }
+  
+  .legend-large, .legend-small {
+    border-radius: 50%;
+  
+    border-color: red;
+  }
+  
+  hr.small, hr.large {
+    width: 83px;
+    position: absolute;
+    top: -8px;
+    left: 55px;
+    border: 1px dashed #ccc;     /* overwrite assembly.css rule */
+    margin-top: 8px;            /* overwrite assembly.css rule */
+  }
+  
+  #info {
+  
+    z-index: 1000; 
+    border-style: dashed;
+    border-width: 2px;
+    border-color: red;
+  
+  }
+  
+  #legend {
+    border-style: dashed;
+    border-width: 2px;
+    border-color: red;
+  }
+  
+  .boys {
+    color: #6E77B0;
+  }
+  
+  .girls {
+    color: #d96d02
+  }
+  
+  #sliderDescriber {
+    z-index: 1200;
+    color:#448ee4
+  }
+  
+  #slider {
+    border-style: dashed;
+    border-width: 2px;
+    border-color: red;
+  }
+  
+  .girlColor {
+    color: '#D96D02'
+  }
+  
+  .boyColor {
+   color: '#6E77B0'
+  }
