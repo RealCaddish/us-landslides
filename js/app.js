@@ -66,54 +66,54 @@
   function resizeCircles(landslides, size_numeric) {
       landslides.eachLayer(function (layer) {
           const radius = 
-          calcRadius(Number(layer.feature.properties['Size:' + size_numeric]));
+          calcRadius(layer.feature.properties[size_numeric]);
           layer.setRadius(radius);
       });
   }
 
-  function sequenceUI(landslides) {
-    //Leaflet control for slider
-    const sliderControl = L.control({
-      position: "bottomleft",
-    });
+  // function sequenceUI(landslides) {
+  //   //Leaflet control for slider
+  //   const sliderControl = L.control({
+  //     position: "bottomleft",
+  //   });
 
-    sliderControl.onAdd = function (map) {
-      const controls = L.DomUtil.get("slider");
-      L.DomEvent.disableScrollPropagation(controls);
-      L.DomEvent.disableClickPropagation(controls);
+  //   sliderControl.onAdd = function (map) {
+  //     const controls = L.DomUtil.get("slider");
+  //     L.DomEvent.disableScrollPropagation(controls);
+  //     L.DomEvent.disableClickPropagation(controls);
 
-      return controls;
+  //     return controls;
 
-    }
-    // add slider to map 
-    sliderControl.addTo(map);
+  //   }
+  //   // add slider to map 
+  //   sliderControl.addTo(map);
 
-    // text added above slider describing year of landslide
-    sliderDescriber.onAdd = function(map) {
-        const year = L.DomUtil.get('slider-text')
-        L.DomEvent.disableScrollPropagation(year);
-      L.DomEvent.disableClickPropagation(year);
+  //   // text added above slider describing year of landslide
+  //   sliderDescriber.onAdd = function(map) {
+  //       const year = L.DomUtil.get('slider-text')
+  //       L.DomEvent.disableScrollPropagation(year);
+  //     L.DomEvent.disableClickPropagation(year);
 
-      return year; 
-    }
-    sliderDescriber.addTo(map);
+  //     return year; 
+  //   }
+  //   sliderDescriber.addTo(map);
 
-    // select slider's input and listen for change
+  //   // select slider's input and listen for change
 
-    $('#slider input[type=range]')
-    .on('input', function () {
+  //   // $('#slider input[type=range]')
+  //   // .on('input', function () {
 
-        //current value of slider on year of occurence
+  //   //     //current value of slider on year of occurence
 
-        var size_numeric = this.value; 
-        console.log(`<b> Size: ${size_numeric} </b>`)
-        // add info for size of landslide 
-        var sd = document.querySelector('#slider-text h2') 
-        sd.innerHTML = `<b>Size: ${size_numeric}</b>`
-        console.log(sd)
+  //   //     var size_numeric = this.value; 
+  //   //     console.log(`<b> Size: ${size_numeric} </b>`)
+  //   //     // add info for size of landslide 
+  //   //     var sd = document.querySelector('#slider-text h2') 
+  //   //     sd.innerHTML = `<b>Size: ${size_numeric}</b>`
+  //   //     console.log(sd)
 
-        //resize circles with updated size level
-        resizeCircles(landslides, size_numeric)
-    });
-  }
+  //   //     //resize circles with updated size level
+  //   //     resizeCircles(landslides, size_numeric)
+  //   // });
+  // }
 })();
