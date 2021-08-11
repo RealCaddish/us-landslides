@@ -50,6 +50,7 @@
     landslides.setStyle({
       color: "#D96D02",
     });
+  
 
     console.log(landslides);
 
@@ -117,7 +118,7 @@
       console.log(sd);
 
       //resize circles with updated size level
-      resizeCircles(landslides, size_numeric);
+      resizeCircles(landslides, sizes);
     });
   }
 })();
